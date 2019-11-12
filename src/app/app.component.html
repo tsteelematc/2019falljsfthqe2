@@ -75,7 +75,7 @@
         <div class="card-header">
           Questions
           <span
-            *ngIf="selectedQuiz.temporaryQuestionCount == 0"
+            *ngIf="selectedQuiz.questions.length == 0"
             class="text-danger"
           >
             (No Questions)
