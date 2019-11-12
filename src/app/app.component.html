@@ -82,7 +82,17 @@
           </span>
         </div>
         <div class="card-body">
-          Coming soon!
+          <button 
+          class="btn btn-outline-success mb-3"
+          (click)="addNewQuestion()"
+        >
+          Add New Question
+        </button>
+        <div
+          *ngFor="let question of this.selectedQuiz.questions"
+        >
+          {{ question.name }}
+        </div>
         </div>
       </div>
         <div class="card">
