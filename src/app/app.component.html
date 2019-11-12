@@ -90,8 +90,19 @@
         </button>
         <div
           *ngFor="let question of this.selectedQuiz.questions"
+          class="form-row"
         >
-          {{ question.name }}
+          <input 
+            class="form-control col-md-10 mb-3"
+            type="text"
+            [(ngModel)]="question.name"
+          >
+          <button 
+            class="btn btn-link text-danger col-md-2 mb-3"
+            (click)="removeQuestion(question)"
+          >
+            Remove
+          </button>
         </div>
         </div>
       </div>
