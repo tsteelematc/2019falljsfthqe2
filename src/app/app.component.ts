@@ -91,19 +91,38 @@ export class AppComponent implements OnInit {
   }
 
   jsPromisesOne() {
-    const x = this.qSvc.getMagicNumberPromise(false);
+    const x = this.qSvc.getMagicNumberPromise(true);
     console.log(x); // ? ? ?
+
+    // Kevin asked about this, during break...
+    //let z = x.then();
+    //console.log(z);
 
     x.then(
       n => {
         console.log(n);
 
-        const y = this.qSvc.getMagicNumberPromise(true);
+        const y = this.qSvc.getMagicNumberPromise(false);
         console.log(y); // ? ? ? 
 
-        y.then(n => console.log(n));
+        y.then(n => console.log(n)).catch(err => console.error(err));
       }
     )
     .catch(err => console.error(err))
+  }
+
+  async jsPromisesTwo() {
+
+    try {
+      const x = await this.qSvc.getMagicNumberPromise(true);
+      console.log(x); // ? ? ? 
+  
+      const y = await this.qSvc.getMagicNumberPromise(false);
+      console.log(y); // ? ? ?       
+    }
+
+    catch(err) {
+      console.error(err);
+    }
   }
 }
