@@ -77,38 +77,42 @@
     <div 
       *ngIf="selectedQuiz != undefined"
     >
-      <button 
-        class="btn mb-3"
-        [class.btn-outline-dark]="numberOfDeletedQuizzes + numberOfAddedQuizzes + numberOfEditedQuizzes === 0"
-        [class.btn-dark]="numberOfDeletedQuizzes + numberOfAddedQuizzes + numberOfEditedQuizzes > 0"
-        (click)="saveBatchEdits()"
+      <div
+        [@pulseSaveCancelButtons]="numberOfDeletedQuizzes + numberOfAddedQuizzes + numberOfEditedQuizzes > 0 ? 'somethingToSave' : 'nothingToSave'"
       >
-        Save Quizzes
-        <span
-          class="badge badge-danger ml-1"
-          *ngIf="numberOfDeletedQuizzes > 0"
+        <button 
+          class="btn mb-3"
+          [class.btn-outline-dark]="numberOfDeletedQuizzes + numberOfAddedQuizzes + numberOfEditedQuizzes === 0"
+          [class.btn-dark]="numberOfDeletedQuizzes + numberOfAddedQuizzes + numberOfEditedQuizzes > 0"
+          (click)="saveBatchEdits()"
         >
-          -{{ numberOfDeletedQuizzes }}
-        </span>
-        <span
-          class="badge badge-success ml-1"
-          *ngIf="numberOfAddedQuizzes > 0"
+          Save Quizzes
+          <span
+            class="badge badge-danger ml-1"
+            *ngIf="numberOfDeletedQuizzes > 0"
+          >
+            -{{ numberOfDeletedQuizzes }}
+          </span>
+          <span
+            class="badge badge-success ml-1"
+            *ngIf="numberOfAddedQuizzes > 0"
+          >
+            +{{ numberOfAddedQuizzes }}
+          </span>
+          <span
+            class="badge badge-light ml-1"
+            *ngIf="numberOfEditedQuizzes > 0"
+          >
+            *{{ numberOfEditedQuizzes }}
+          </span>
+        </button>
+        <button 
+          class="btn btn-link mb-3"
+          (click)="cancelBatchEdits()"
         >
-          +{{ numberOfAddedQuizzes }}
-        </span>
-        <span
-          class="badge badge-light ml-1"
-          *ngIf="numberOfEditedQuizzes > 0"
-        >
-          *{{ numberOfEditedQuizzes }}
-        </span>
-      </button>
-      <button 
-        class="btn btn-link mb-3"
-        (click)="cancelBatchEdits()"
-      >
-        Cancel
-      </button>
+          Cancel
+        </button>
+      </div>
       <div class="card mb-3">
         <div class="card-header">
           General
